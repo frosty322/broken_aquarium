@@ -6,15 +6,15 @@ export default {
     EXPLAIN:
       "Введите через запятую натуральные числа, максимальный размер аквариума 100000х100000",
     ERROR: "Конфигурация введена неправильно",
-    PLACEHOLDER: "4,2,3,5,0",
-    BUTTON: "Ввести"
+    PLACEHOLDER: "4,2,3,2,5,0,1,3",
+    BUTTON: "Ввести",
   },
   [Language.ENG]: {
     TITLE: "Aquarium configuration",
     EXPLAIN:
       "Enter natural numbers separated by commas, the maximum size of the aquarium is 100000x100000",
     ERROR: "Configuration entered incorrectly",
-    PLACEHOLDER: "4,2,3,5,0",
-    BUTTON: "Enter"
+    PLACEHOLDER: "4,2,3,2,5,0,1,3",
+    BUTTON: "Enter",
   },
 };

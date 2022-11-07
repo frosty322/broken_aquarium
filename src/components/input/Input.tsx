@@ -12,29 +12,25 @@ const Input = (props: InputProps) => {
   const { lang } = props;
   const handleClick = () => {
     const aa = middleWare.replace(" ", "").split(",");
-    console.log(aa);
     if (aa.length > 100000 || aa.length === 0) {
       setErr(true);
       return;
     }
-    console.log("hnh");
     let errInList = false;
     const resAa = aa
       .map((char) => {
         console.log(isNaN(Number(char)));
-        if (isNaN(Number(char)) || Number(char) > 100000) {
+        if (isNaN(Number(char)) || Number(char) > 100000 || Number(char) < 0) {
           errInList = true;
           return null;
         }
         return Number(char);
       })
       .filter((n): n is number => n !== null);
-    console.log(errInList);
     if (errInList || resAa.length === 0) {
       setErr(true);
       return;
     }
-    console.log(resAa);
     setErr(false);
     props.setBoxes(resAa);
   };

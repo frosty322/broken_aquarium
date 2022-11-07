@@ -24,6 +24,8 @@ const Draw =
         ? ((width / boxes.length) * height) / width
         : height / Math.max(...boxes);
 
+    const resize = width < height ? boxSize * (width / height) : null;
+
     let leftMax = 0;
     let rightMax = 0;
     let left = 0;
@@ -31,7 +33,7 @@ const Draw =
     let volume = 0;
 
     boxes.forEach((element, i) => {
-      DrawCol(ctx, boxSize, i, element, width, height, boxType.Sand);
+      DrawCol(ctx, resize ?? boxSize, i, element, width, height, boxType.Sand);
     });
 
     while (left < right) {
@@ -47,7 +49,7 @@ const Draw =
         volume += rightMax - boxes[right];
         DrawCol(
           ctx,
-          boxSize,
+          resize ?? boxSize,
           right,
           rightMax - boxes[right],
           width,
@@ -60,7 +62,7 @@ const Draw =
         volume += leftMax - boxes[left];
         DrawCol(
           ctx,
-          boxSize,
+          resize ?? boxSize,
           left,
           leftMax - boxes[left],
           width,
@@ -71,8 +73,10 @@ const Draw =
         left++;
       }
     }
-    if (volume < 200) {
-      DrawGrid(ctx, width, height, boxSize);
+    console.log(Math.max(...boxes));
+
+    if (boxes.length < 100 && Math.max(...boxes) < 100) {
+      DrawGrid(ctx, width, height, resize ?? boxSize);
     }
     resultCB(volume);
   };
