@@ -21,7 +21,7 @@ const Draw =
 
     const boxSize =
       boxes.length > Math.max(...boxes)
-        ? width / boxes.length
+        ? ((width / boxes.length) * height) / width
         : height / Math.max(...boxes);
 
     let leftMax = 0;

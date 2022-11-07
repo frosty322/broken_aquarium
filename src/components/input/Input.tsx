@@ -9,6 +9,7 @@ const Input = (props: InputProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMiddleWare(e.target.value);
   };
+  const { lang } = props;
   const handleClick = () => {
     const aa = middleWare.replace(" ", "").split(",");
     console.log(aa);
@@ -40,21 +41,21 @@ const Input = (props: InputProps) => {
   return (
     <div>
       <div>
-        <span>{LOCALE.TITLE}</span>
+        <span>{LOCALE[lang].TITLE}</span>
       </div>
       <div>
         <input
           value={middleWare}
           onChange={handleChange}
           type="text"
-          placeholder={LOCALE.H}
+          placeholder={LOCALE[lang].PLACEHOLDER}
         />
         <button onClick={handleClick}>Ввести</button>
       </div>
       <div>
-        <span>{LOCALE.EXPLAIN}</span>
+        <span>{LOCALE[lang].EXPLAIN}</span>
       </div>
-      <div>{err && <span>{LOCALE.ERROR}</span>}</div>
+      <div>{err && <span>{LOCALE[lang].ERROR}</span>}</div>
     </div>
   );
 };

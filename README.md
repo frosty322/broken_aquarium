@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# Сломанный аквариум
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Сломанный аквариум - приложение разработанное в качестве тестового задания
 
-## Available Scripts
+Задача:
+У Никиты был плоский аквариум с рыбками. В качестве украшения аквариума Никита использовал кубики, сложенные столбиками. После сильного хлопка дверью у аквариума выпали боковые стенки. При этом практически вся вода вылилась. Чтобы определить, не затопил ли Никита соседей снизу, нужно посчитать, сколько воды осталось в аквариуме. Проблема в том, что аквариум очень большой. Ширина и высота аквариума достигает N=100000 кубиков.
+Надо написать программу, которая по заданной конфигурации столбцов определяет объем оставшейся между кубиками воды.
+На вход дается массив целых чисел – последовательная высота столбцов в аквариуме.
+Результатом должно быть число – объем оставшейся воды между кубиками после того как вся вода слилась.
+Например, для массива [4,2,3,2,5,0,1,3] результат должен быть равен 10, как на картинке ниже.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+● решение выполнено в виде одностраничного веб-приложения React
+● есть возможность ввести конфигурацию аквариума вручную (с проверкой корректности ввода)
+● решение визуализируется (отрисовка на canvas)
+● веб-приложение одинаково выглядит и работает в основных браузерах (Chrome, Firefox, Edge, Safari) за счет настроек компилятора
+● веб-приложение реализовано с использованием языка TypeScript.
+● есть unit тесты проверки рендера и подсчета оставшейся в аквариуме воды
+● поддержка многоязычности (Рус / Англ)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Установка
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Broken aquarium необходим [Node.js](https://nodejs.org/) v10+ для запуска.
 
-### `npm test`
+Установите зависимости.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+cd broken_aquarium
+npm i
+```
 
-### `npm run build`
+## Запуск
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+npm run start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Приложение откроется по адресу [http://localhost:3000](http://localhost:3000)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Тесты
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```sh
+npm run test
+```
