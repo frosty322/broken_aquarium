@@ -1,19 +1,18 @@
-import { boxType } from "../../constants";
+import { boxType } from "../../utils/constants";
 
 export default function DrawBox(
   ctx: CanvasRenderingContext2D,
   boxSize: number,
   x: number,
   y: number,
-  canvasSize: number,
+  height: number,
   type: boxType
 ) {
-  const p = 10; //padding
 
   ctx.fillStyle = type;
   ctx.fillRect(
-    p + x * boxSize,
-    canvasSize - p - (y + 1) * boxSize,
+    x * boxSize,
+    height - (y + 1) * boxSize,
     boxSize,
     boxSize
   );

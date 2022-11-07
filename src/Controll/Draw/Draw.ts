@@ -1,54 +1,80 @@
-import { boxType } from "../../constants";
+import { maxHeaderSize } from "http";
+import { boxType } from "../../utils/constants";
 import DrawBox from "./DrawBox";
 import DrawCol from "./DrawCol";
 import DrawGrid from "./DrawGrid";
 
-export default function Draw(ctx: CanvasRenderingContext2D) {
-  DrawGrid(ctx, 1000, 1000 / 8);
-  const boxes = [4, 2, 3, 2, 5, 0, 1, 3];
-  let leftMax = 0;
-  let rightMax = 0;
-  let left = 0;
-  let right = boxes.length - 1;
-  let volume = 0;
+const Draw =
+  (
+    boxes: number[],
+    resultCB: React.Dispatch<React.SetStateAction<number | null>>
+  ) =>
+  (ctx: CanvasRenderingContext2D) => {
+    const box = document.querySelector(".main-box");
+    let width = 0;
+    let height = 0;
 
-  boxes.forEach((element, i) => {
-    DrawCol(ctx, 1000 / 8, i, element, 1000, boxType.Sand);
-  });
-
-  while (left < right) {
-    if (boxes[left] > leftMax) {
-      leftMax = boxes[left];
+    if (box) {
+      width = box.clientWidth;
+      height = box.clientHeight;
     }
 
-    if (boxes[right] > rightMax) {
-      rightMax = boxes[right];
-    }
+    const boxSize =
+      boxes.length > Math.max(...boxes)
+        ? width / boxes.length
+        : height / Math.max(...boxes);
 
-    if (leftMax >= rightMax) {
-      volume += rightMax - boxes[right];
-      DrawCol(
-        ctx,
-        1000 / 8,
-        right,
-        rightMax - boxes[right],
-        1000,
-        boxType.Whater,
-        boxes[right]
-      );
-      right--;
-    } else {
-      volume += leftMax - boxes[left];
-      DrawCol(
-        ctx,
-        1000 / 8,
-        left,
-        leftMax - boxes[left],
-        1000,
-        boxType.Whater,
-        boxes[left]
-      );
-      left++;
+    let leftMax = 0;
+    let rightMax = 0;
+    let left = 0;
+    let right = boxes.length - 1;
+    let volume = 0;
+
+    boxes.forEach((element, i) => {
+      DrawCol(ctx, boxSize, i, element, width, height, boxType.Sand);
+    });
+
+    while (left < right) {
+      if (boxes[left] > leftMax) {
+        leftMax = boxes[left];
+      }
+
+      if (boxes[right] > rightMax) {
+        rightMax = boxes[right];
+      }
+
+      if (leftMax >= rightMax) {
+        volume += rightMax - boxes[right];
+        DrawCol(
+          ctx,
+          boxSize,
+          right,
+          rightMax - boxes[right],
+          width,
+          height,
+          boxType.Whater,
+          boxes[right]
+        );
+        right--;
+      } else {
+        volume += leftMax - boxes[left];
+        DrawCol(
+          ctx,
+          boxSize,
+          left,
+          leftMax - boxes[left],
+          width,
+          height,
+          boxType.Whater,
+          boxes[left]
+        );
+        left++;
+      }
     }
-  }
-}
+    if (volume < 200) {
+      DrawGrid(ctx, width, height, boxSize);
+    }
+    resultCB(volume);
+  };
+
+export default Draw;

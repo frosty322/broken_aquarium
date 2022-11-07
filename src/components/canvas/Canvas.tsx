@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import useCanvas from "./Controll/useCanvas";
+import useCanvas from "../../Controll/useCanvas";
 
 interface CanvasProps {
   draw: (ctx: CanvasRenderingContext2D) => void;
